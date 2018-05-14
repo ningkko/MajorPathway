@@ -10,7 +10,8 @@ Ideally, it informs the players about the course offerings of CS department and 
 ## How to run:
 #### Notice: Python 3.6.5 required.
 Download the zip file and unzip it to a directory.\
-Run MajorPathway.py.
+Run MajorPathway.py
+#### Note: We have a Question.text where questions of different courses are assigned, and its example question reference text Q1.text. To add more questions, add question texts in the same format as Q1.text, then return to Question.txt and add the name of the question text (e.g."Q1.txt") in the same format as Q1.txt is added.
 
 ## Current problems:
 Graduation logic not complished.\
