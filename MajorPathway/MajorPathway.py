@@ -537,11 +537,11 @@ class Computer:
     def check(self,button,ans,root):
         if button.cget('text') == ans:
             mainCharacter.GPA = 4.0
-            tkinter.messagebox.showinfo("Check", "You are correct!")
+            tkinter.messagebox.showinfo("Check", "Correct!")
             root.destroy()
         else:
             mainCharacter.GPA = 2.7
-            tkinter.messagebox.showinfo("Check", "This is wrong.") 
+            tkinter.messagebox.showinfo("Check", "Oops!") 
             root.destroy()
     def update(self):
         if semester == "fall":
