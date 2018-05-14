@@ -1,4 +1,1 @@
-'''
-Qustions. More to be updated by users.
-'''
 {"q":"Which of the following is not a characteristics of the python?", "A": "Low level language", "B": "Fast and efficient", "C": "Interpretive", "ans": "Fast and efficient"}
