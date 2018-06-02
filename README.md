@@ -1,5 +1,6 @@
 # MajorPathway
-Educational game; CSC 220 Final Project - Spring 2018 @Smith
+Educational game; \
+CSC 220 Final Project - Spring 2018 @Smith
 
 ## Introduction
 Students, especially first years, often feel overwhelmed by the rich and rigorous course offerings and major requirements when they transition to college - They are expected to find all related information at the department website on their own.\
