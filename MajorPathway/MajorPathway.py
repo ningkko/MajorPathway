@@ -21,7 +21,7 @@ def main():
 
         # End the game
         if k == 'period':
-            print( 'Quit the game.' )
+            tkinter.messagebox.showinfo("Quit the game","See you!")
             break
         # move, check logic
         elif k == "i":
@@ -32,7 +32,6 @@ def main():
 
     #---------------------------------------------------------------
     # Wait for click
-    print ('click to close')
     win.getMouse( )
     win.close( )
 
@@ -43,7 +42,7 @@ class Character:
     def __init__(self, px, py):
         '''Constructor'''
 
-        self.image = Image( Point(px,py), "front.gif" )
+        self.image = Image( Point(px,py), "img/front.gif" )
         self.imageID = 'front'
         self.positionX = px
         self.positionY = py
@@ -55,14 +54,17 @@ class Character:
         self.GPA=4.0
         
     def graduate(self):
+       
         if semester == "spring" and year == 2022:
             tkinter.messagebox.showinfo("Congratulation","Congratulation! You graduate!")
             
     def rising(self):
+       
         global year
         year +=1
         
     def springToFall(self):
+       
         self.courseNum = 0
         global semester
         if semester == "spring":
@@ -85,16 +87,16 @@ class Character:
         self.image.undraw()
 
         # Import images for all actions of the character
-        front = Image( Point(self.positionX,self.positionY), 'front.gif')
-        back = Image( Point(self.positionX,self.positionY),'back.gif' )
-        standleft1 = Image( Point(self.positionX,self.positionY), 'standleft.gif')
-        standleft2 = Image( Point(self.positionX,self.positionY), 'standleft.gif')
-        standright1 = Image( Point(self.positionX,self.positionY), 'standright.gif')
-        standright2 = Image( Point(self.positionX,self.positionY), 'standright.gif')
-        walkleft1 = Image( Point(self.positionX,self.positionY), 'walkleft1.gif')
-        walkleft2 = Image( Point(self.positionX,self.positionY), 'walkleft2.gif')
-        walkright1 = Image( Point(self.positionX,self.positionY), 'walkright1.gif')
-        walkright2 = Image( Point(self.positionX,self.positionY), 'walkright2.gif')
+        front = Image( Point(self.positionX,self.positionY), 'img/front.gif')
+        back = Image( Point(self.positionX,self.positionY),'img/back.gif' )
+        standleft1 = Image( Point(self.positionX,self.positionY), 'img/standleft.gif')
+        standleft2 = Image( Point(self.positionX,self.positionY), 'img/standleft.gif')
+        standright1 = Image( Point(self.positionX,self.positionY), 'img/standright.gif')
+        standright2 = Image( Point(self.positionX,self.positionY), 'img/standright.gif')
+        walkleft1 = Image( Point(self.positionX,self.positionY), 'img/walkleft1.gif')
+        walkleft2 = Image( Point(self.positionX,self.positionY), 'img/walkleft2.gif')
+        walkright1 = Image( Point(self.positionX,self.positionY), 'img/walkright1.gif')
+        walkright2 = Image( Point(self.positionX,self.positionY), 'img/walkright2.gif')
 
         # If want to walk to the left
         if img == 'left':
@@ -221,13 +223,14 @@ class Professor:
         b1 = tkinter.Button(box1, text = "Chat", command = self.chat)
         b2 = tkinter.Button(box1, text = "Declare", command= lambda: self.declare(mainCharacter))
         b3 = tkinter.Button(box1, text = "Advise", command = self.advise)
-        b4 = tkinter.Button(box1, text = "Close", command=box1.destroy)
+        b4 = tkinter.Button(box1, text = "Leave", command=box1.destroy)
         b1.pack()        
         b2.pack()
         b3.pack()
         b4.pack()
 
     def advise(self):
+        
         if mainCharacter.checkMajor() == True and mainCharacter.advisor == professor.name:
             tkinter.messagebox.showinfo("Advising", "Hi, come on in and sit down.")
             box2 = tkinter.Tk()
@@ -235,7 +238,7 @@ class Professor:
             b2 = tkinter.Button(box2, text = "courseTaking", command = self.courseTaking)
             b3 = tkinter.Button(box2, text = "Recommondate", command = self.recommondate)
             b4 = tkinter.Button(box2, text = "Research", command = self.research)
-            b5 = tkinter.Button(box2, text = "Close", command = box2.destroy)
+            b5 = tkinter.Button(box2, text = "Leave", command = box2.destroy)
             b1.pack()        
             b2.pack()
             b3.pack()
@@ -254,31 +257,39 @@ class Professor:
             b1 = tkinter.Button(box3, text = "Study Away", command = self.studyAway)
             b2 = tkinter.Button(box3, text = "courseTaking", command = self.courseTaking)
             b3 = tkinter.Button(box3, text = "Research", command = self.research)
-            b4 = tkinter.Button(box3, text = "Close", command = box3.destroy)
+            b4 = tkinter.Button(box3, text = "Leave", command = box3.destroy)
             b1.pack()        
             b2.pack()
             b3.pack()
             b4.pack()
+    
     def studyAway(self):
+        
         tkinter.messagebox.showinfo("Study elsewhere", "There are some programs for CS students. Check them out.")
+    
     def courseTaking(self):
+        
         tkinter.messagebox.showinfo("Requirements", "To graduate, you have to fulfill 11 courses inside the major, including CSC111, MTH111 and 153, three 200 level core courses in theory, programming and system areas and one 300 level seminar.")
         tkinter.messagebox.showinfo("Requirements", "Some courses cannot be counted towards the major after you take some other courses, make sure you check them out before taking them.")
+   
     def research(self):
+        
         tkinter.messagebox.showinfo("Research", "We have a program called SURF, which is a summer research.")
         tkinter.messagebox.showinfo("Research", "Professors also support special studies which take place during semesters. They worth 1 to 4 credits based on different situations.")
+   
     def recommondate(self):
+       
         tkinter.messagebox.showinfo("Recommondation Letter", "Ok, tell me more about you.")
 
 
     def chat(self):
+       
         chance = random.randint(0, 8)
         if chance == 0 or chance == 7 or chance == 8:
                 if self.name == "joe":
                         tkinter.messagebox.showinfo( "Chat.", "Nice weather today...:-j")       
                 else:
                         tkinter.messagebox.showinfo( "Chat.", "Nice weather today...")
-
         if chance == 1:
                 tkinter.messagebox.showinfo( "Chat.", "You should take 212 before looking for intern. 212 is very import.")
         if chance == 2:
@@ -411,15 +422,15 @@ class Computer:
     coursePracticed={}
 
     def __init__(self, name, px, py):
-        self.image = Image(Point(px,py), "computer1.gif")
+        self.image = Image(Point(px,py), "img/computer1.gif")
         self.imageID = 'black'
         self.positionX = px
         self.positionY = py
 
     # Activate the computer when walk close to
     def activate(self):
-        black = Image( Point(self.positionX,self.positionY), 'computer1.gif')
-        white = Image( Point(self.positionX,self.positionY), 'computer2.gif')
+        black = Image( Point(self.positionX,self.positionY), 'img/computer1.gif')
+        white = Image( Point(self.positionX,self.positionY), 'img/computer2.gif')
 
         if (self.imageID =='black'):
             self.imageID = 'white'
@@ -428,8 +439,8 @@ class Computer:
 
     # Deactivate computer when leaving
     def deactivate(self):
-        black = Image( Point(self.positionX,self.positionY), 'computer1.gif')
-        white = Image( Point(self.positionX,self.positionY), 'computer2.gif')
+        black = Image( Point(self.positionX,self.positionY), 'img/computer1.gif')
+        white = Image( Point(self.positionX,self.positionY), 'img/computer2.gif')
 
         if(self.imageID == 'white'):
             self.imageID = 'black'
@@ -456,6 +467,9 @@ class Computer:
         schedule.pack()
         information = tkinter.Button(root, text="Personal Information", command = self.inform)
         information.pack() 
+        quit = tkinter.Button(root,text="Quit",command=root.destroy)
+        quit.pack()
+
     def inform(self):
         #root = tkinter.Tk()
         tkinter.messagebox.showinfo("Information","Semester: "+str(semester)+" ; "+"Year: "+str(year)+" ; "+"GPA: "+str(mainCharacter.GPA))
@@ -467,6 +481,8 @@ class Computer:
         for key,value in course_list.items():
             b=tkinter.Button(root, text = str(key)+": "+value, command = lambda key=key: self.infoDisplay(key))
             b.pack()
+        quit = tkinter.Button(root,text="Quit",command=root.destroy)
+        quit.pack()
 
     # Generated course list for each semester
     def course_list(self, semester):
@@ -482,20 +498,22 @@ class Computer:
 
     # Get course info from txt file
     def checkCourse(self, key):
-        course_info = eval(open("course_info.txt",encoding='utf-8').read())
+        course_info = eval(open("supp/course_info.txt",encoding='utf-8').read())
         return course_info.get(key)
 
     # Display info given key
     def infoDisplay(self,key):
         root = tkinter.Tk()
         tkinter.Label(root, wraplength=500, text=self.checkCourse(key)).pack(padx=30, pady=30)
-        b = tkinter.Button(root, text="Register", command = lambda:self.register(key))
+        b = tkinter.Button(root, text = "Register", command = lambda:self.register(key,root))
         b.pack()
+        quit = tkinter.Button(root,text="Quit",command=root.destroy)
+        quit.pack()
 
     # Register/waitlist a class given key
-    def register(self,key):
+    def register(self,key,root):
         #chance = random.randint(0,1)
-        chance = 0
+        chance = random.randint(0,1)
         if chance == 0 and mainCharacter.courseNum <=4:
             tkinter.messagebox.showinfo("Registered", "Course "+str(key)+" has been added to your schedule. Please go to your schedule and do the practice to pass this semester.")
             self.course_taken.update({key: self.all_courses[key]})
@@ -505,18 +523,17 @@ class Computer:
             tkinter.messagebox.showinfo("Wait","Think for a while. You have already taken 4 courses for this semester.")
         elif chance!= 0:
             tkinter.messagebox.showinfo("Failed", "The class is full. You are waitlisted.")
-
+        root.destroy()
         return self.course_taken
 
-    #def doubleCheck(self,key)
-        
+
     # Practice problems
     def practiceDisplay(self, key):
         #update = True
         if key in self.coursePracticed:
             self.coursePracticed.pop(key)
         root = tkinter.Tk()
-        questions = eval(open("Questions.txt",encoding='utf-8').read())
+        questions = eval(open("supp/Questions.txt",encoding='utf-8').read())
         questionText = eval(open(questions.get(key),encoding ='utf-8').read())
         question = questionText.get("q")
         A = questionText.get("A")
@@ -532,8 +549,7 @@ class Computer:
         R3.pack()
         if root.winfo_exists !=1 and not self.coursePracticed:
             self.update()
-            print("Year: ", year)
-            print("Semester:", semester)
+
     def check(self,button,ans,root):
         if button.cget('text') == ans:
             mainCharacter.GPA = 4.0
@@ -543,22 +559,28 @@ class Computer:
             mainCharacter.GPA = 2.7
             tkinter.messagebox.showinfo("Check", "Oops!") 
             root.destroy()
+   
     def update(self):
+        
         if semester == "fall":
             mainCharacter.springToFall()
         else:
             mainCharacter.rising()	
             mainCharacter.springToFall()			
-    # Display registered classes
+    
+    # Display registered classes   
     def displaySchedule(self):
-        root = tkinter.Tk()
-        if bool(self.course_taken) == False:
-            tkinter.messagebox.showinfo("Empty", "Your schedule is empty. Register for courses!")
+        
+        root = tkinter.Tk()        
+        if not bool(self.course_taken):
+            tkinter.Label(root, text="Your schedule is empty. Register for courses!").pack(padx=30, pady=30)
         else:
+            tkinter.Label(root, text="Here are courses you have registered. Click on a course to practice.").pack(padx=30, pady=30)
             for key,value in self.course_taken.items():
                 b=tkinter.Button(root, text = str(key)+": "+value, command = lambda key=key: self.practiceDisplay(key))
                 b.pack()
-            tkinter.messagebox.showinfo("Practice", "Here are courses you have registered. Click on a course to practice.")
+        quit = tkinter.Button(root,text="Quit",command=root.destroy)
+        quit.pack()
 #============ Scene Logic  ===================
 # Parent class for staicase, door, elevator and etc.
 class Objects:
@@ -625,40 +647,40 @@ class Door():
             scene = "joeOffice"
             global joe
             joeDoor.image.undraw()
-            joe = drawOffice("joe.gif", "joe", self)
+            joe = drawOffice("img/joe.gif", "joe", self)
             
         elif self.name == "jordanDoor":
             scene = "jordanOffice"
             global jordan
             jordanDoor.image.undraw()
-            jordan = drawOffice("jordan.gif", "jordan", self)
+            jordan = drawOffice("img/jordan.gif", "jordan", self)
             global logan
-            logan = Objects(-220, 150, "babysitter.gif", "logan")
+            logan = Objects(-220, 150, "img/babysitter.gif", "logan")
             logan.image.draw(win)
 
         elif self.name == "nickDoor":
             scene = "nickOffice"
             global nick
             nickDoor.image.undraw()
-            nick = drawOffice("nick.gif", "nick", self)
+            nick = drawOffice("img/nick.gif", "nick", self)
 
         elif self.name == "dominiqueDoor":
             scene = "dominiqueOffice"
             global dominique
             dominiqueDoor.image.undraw()
-            dominique = drawOffice("dominique.gif", "dominique", self)
+            dominique = drawOffice("img/dominique.gif", "dominique", self)
 
         elif self.name == "ileanaDoor":
             scene = "ileanaOffice"
             global ileana
             ileanaDoor.image.undraw()
-            ileana = drawOffice("ileana.gif", "ileana", self)
+            ileana = drawOffice("img/ileana.gif", "ileana", self)
         
         elif self.name == "judithDoor":
             scene = "judithOffice"
             global judith
             judithDoor.image.undraw()
-            judith = drawOffice( "judith.gif", "judith", self )
+            judith = drawOffice( "img/judith.gif", "judith", self )
 
 #============================ Interact ================================
 def interact():
@@ -752,7 +774,6 @@ def interact():
 
         # Check door
         if checkBiggerDistance(joeDoor, mainCharacter.getX(), mainCharacter.getY()) and k == "Return":
-            print("joe")
             joeDoor.openDoor()
 
         # Check NPC
@@ -902,7 +923,7 @@ def checkElevator():
         b1 = tkinter.Button(box, text = "First floor", command = first)
         b2 = tkinter.Button(box, text = "Second floor", command = second)
         b3 = tkinter.Button(box, text = "Third floor", command = third)
-        b4 = tkinter.Button(box, text = "Close", command = box.destroy)
+        b4 = tkinter.Button(box, text = "Leave", command = box.destroy)
         b3.pack()        
         b2.pack()
         b1.pack()
@@ -914,11 +935,6 @@ def checkElevator():
 def drawScene():
 
     resetScene()
-    print("reset")
-    print("position in drawScene", mainCharacter.positionX)
-
-    print("draw in drawScene")
-    print(mainCharacter.positionX)
 
     staircaseUp.image.undraw()
     staircaseDown.image.undraw()
@@ -941,8 +957,8 @@ def drawScene():
         road4.setWidth(2)
         road4.draw(win)
         for i in range(-570, 620, 50):
-            drawObject(i, -150, "plant1.gif")
-            drawObject(i, 170, "plant1.gif")
+            drawObject(i, -150, "img/plant1.gif")
+            drawObject(i, 170, "img/plant1.gif")
 
     if scene == "floor1r":
         staircaseUp.image.draw(win)
@@ -951,23 +967,23 @@ def drawScene():
         unknownDoor4.image.draw(win)
         unknownDoor5.image.draw(win)
         computer.image.draw(win)
-        drawObject(-380, 140, "plant1.gif")
-        drawObject(-310, 140, "plant1.gif")
-        drawObject(-310, -90, "tablechair2.gif")
-        drawObject(-250, 140, "Npc4.gif")
-        drawObject(-200, -200, "plant2.gif")
-        drawObject(-200, -120, "plant2.gif")
-        drawObject(-150, 180, "table.gif")
-        drawObject(-120, -200, "Npc1.gif")
-        drawObject(-50, -200, "Npc1.gif")
-        drawObject(50, 160, "bookcase.gif")
-        drawObject(30, -200, "plant2.gif")
-        drawObject(30, -120, "plant2.gif")
-        drawObject(80, -200, "plant2.gif")
-        drawObject(80, -120, "plant2.gif")
-        drawObject(130, -200, "plant2.gif")
-        drawObject(130, -120, "plant2.gif")
-        drawObject(200, 140, "plant2.gif")
+        drawObject(-380, 140, "img/plant1.gif")
+        drawObject(-310, 140, "img/plant1.gif")
+        drawObject(-310, -90, "img/tablechair2.gif")
+        drawObject(-250, 140, "img/Npc4.gif")
+        drawObject(-200, -200, "img/plant2.gif")
+        drawObject(-200, -120, "img/plant2.gif")
+        drawObject(-150, 180, "img/table.gif")
+        drawObject(-120, -200, "img/Npc1.gif")
+        drawObject(-50, -200, "img/Npc1.gif")
+        drawObject(50, 160, "img/bookcase.gif")
+        drawObject(30, -200, "img/plant2.gif")
+        drawObject(30, -120, "img/plant2.gif")
+        drawObject(80, -200, "img/plant2.gif")
+        drawObject(80, -120, "img/plant2.gif")
+        drawObject(130, -200, "img/plant2.gif")
+        drawObject(130, -120, "img/plant2.gif")
+        drawObject(200, 140, "img/plant2.gif")
 
     elif scene == "floor2r":
         staircaseUp.image.draw(win)
@@ -975,32 +991,32 @@ def drawScene():
         gateL.image.draw(win)
         joeDoor.image.draw(win)
         computer.image.draw(win)
-        drawObject(-350, 140, "plant1.gif" )
-        drawObject(-300, 140, "plant1.gif" )
-        drawObject(-350, 220, "plant2.gif" )
-        drawObject(-300, 220, "plant2.gif" )
-        drawObject(-150, 180, "tablechair2.gif" )
-        drawObject(80, 160, "bookcase.gif")
-        drawObject(340, 160, "bookcase.gif")
-        drawObject(450, 190, "wc.gif")
-        drawObject(350, -150, "trashbin.gif")
-        drawObject(-340, -190, "table.gif")
-        drawObject(-340, -90, "table.gif")
-        drawObject(-240, -140, "Npc2.gif")
-        drawObject(-240, -250, "Npc3.gif")        
-        drawObject(-180, -140, "Npc3.gif")
-        drawObject(-180, -250, "Npc2.gif")
-        drawObject(-120, -140, "Npc2.gif")
-        drawObject(-120, -250, "Npc3.gif")
-        drawObject(-60, -140, "Npc3.gif")
-        drawObject(-60, -250, "Npc2.gif")
-        drawObject(30, -200, "plant2.gif")
-        drawObject(30, -120, "plant2.gif")
-        drawObject(80, -200, "plant2.gif")
-        drawObject(80, -120, "plant2.gif")
-        drawObject(130, -200, "plant2.gif")
-        drawObject(130, -120, "plant2.gif")
-        drawObject(250, -160, "board.gif")
+        drawObject(-350, 140, "img/plant1.gif" )
+        drawObject(-300, 140, "img/plant1.gif" )
+        drawObject(-350, 220, "img/plant2.gif" )
+        drawObject(-300, 220, "img/plant2.gif" )
+        drawObject(-150, 180, "img/tablechair2.gif" )
+        drawObject(80, 160, "img/bookcase.gif")
+        drawObject(340, 160, "img/bookcase.gif")
+        drawObject(450, 190, "img/wc.gif")
+        drawObject(350, -150, "img/trashbin.gif")
+        drawObject(-340, -190, "img/table.gif")
+        drawObject(-340, -90, "img/table.gif")
+        drawObject(-240, -140, "img/Npc2.gif")
+        drawObject(-240, -250, "img/Npc3.gif")        
+        drawObject(-180, -140, "img/Npc3.gif")
+        drawObject(-180, -250, "img/Npc2.gif")
+        drawObject(-120, -140, "img/Npc2.gif")
+        drawObject(-120, -250, "img/Npc3.gif")
+        drawObject(-60, -140, "img/Npc3.gif")
+        drawObject(-60, -250, "img/Npc2.gif")
+        drawObject(30, -200, "img/plant2.gif")
+        drawObject(30, -120, "img/plant2.gif")
+        drawObject(80, -200, "img/plant2.gif")
+        drawObject(80, -120, "img/plant2.gif")
+        drawObject(130, -200, "img/plant2.gif")
+        drawObject(130, -120, "img/plant2.gif")
+        drawObject(250, -160, "img/board.gif")
 
     elif scene == "floor3r":
         staircaseUp.image.draw(win)
@@ -1017,53 +1033,53 @@ def drawScene():
         elevator.image.draw(win)
         gateL.image.draw(win)
         gateR.image.draw(win)
-        drawObject(-450, 140, "Npc2.gif")
-        drawObject(-380, 140, "Npc3.gif")
-        drawObject(-310, 140, "Npc2.gif")
-        drawObject(-220, 140, "plant2.gif")
-        drawObject(-220, 220, "plant2.gif")
-        drawObject(-150, 180, "table.gif")
+        drawObject(-450, 140, "img/Npc2.gif")
+        drawObject(-380, 140, "img/Npc3.gif")
+        drawObject(-310, 140, "img/Npc2.gif")
+        drawObject(-220, 140, "img/plant2.gif")
+        drawObject(-220, 220, "img/plant2.gif")
+        drawObject(-150, 180, "img/table.gif")
         unknownDoor3.image.draw(win)
-        drawObject(200, 140, "plant2.gif")
+        drawObject(200, 140, "img/plant2.gif")
         unknownDoor4.image.draw(win)
-        drawObject(-440, -180, "tablechair2.gif")
-        drawObject(-310, -180, "tablechair2.gif")
-        drawObject(-440, -90, "tablechair2.gif")
-        drawObject(-310, -90, "tablechair2.gif")
-        drawObject(-200, -200, "plant2.gif")
-        drawObject(-200, -120, "plant2.gif")
-        drawObject(-120, -150, "Npc1.gif")
-        drawObject(-50, -150, "Npc1.gif")
-        drawObject(30, -210, "plant2.gif")
-        drawObject(30, -130, "plant2.gif")
-        drawObject(80, -210, "plant2.gif")
-        drawObject(80, -130, "plant2.gif")
-        drawObject(130, -210, "plant2.gif")
-        drawObject(130, -130, "plant2.gif")
+        drawObject(-440, -180, "img/tablechair2.gif")
+        drawObject(-310, -180, "img/tablechair2.gif")
+        drawObject(-440, -90, "img/tablechair2.gif")
+        drawObject(-310, -90, "img/tablechair2.gif")
+        drawObject(-200, -200, "img/plant2.gif")
+        drawObject(-200, -120, "img/plant2.gif")
+        drawObject(-120, -150, "img/Npc1.gif")
+        drawObject(-50, -150, "img/Npc1.gif")
+        drawObject(30, -210, "img/plant2.gif")
+        drawObject(30, -130, "img/plant2.gif")
+        drawObject(80, -210, "img/plant2.gif")
+        drawObject(80, -130, "img/plant2.gif")
+        drawObject(130, -210, "img/plant2.gif")
+        drawObject(130, -130, "img/plant2.gif")
         computer.image.draw(win)
 
 
     elif scene == "floor2l":
         elevator.image.draw(win)
         gateR.image.draw(win)
-        drawObject(-450, 140, "plant1.gif")
-        drawObject(-380, 140, "plant1.gif")
-        drawObject(-310, 140, "plant1.gif")
-        drawObject(-230, 140, "Npc4.gif")
-        drawObject(-150, 180, "plant1.gif")
-        drawObject(200, 140, "plant2.gif")
-        drawObject(-440, -90, "tablechair2.gif")
-        drawObject(-310, -90, "tablechair2.gif")
-        drawObject(-200, -200, "plant2.gif")
-        drawObject(-200, -120, "plant2.gif")
-        drawObject(-120, -210, "Npc1.gif")
-        drawObject(-50, -210, "Npc1.gif")
-        drawObject(30, -200, "plant2.gif")
-        drawObject(30, -120, "plant2.gif")
-        drawObject(80, -200, "plant2.gif")
-        drawObject(80, -120, "plant2.gif")
-        drawObject(130, -200, "plant2.gif")
-        drawObject(130, -120, "plant2.gif")
+        drawObject(-450, 140, "img/plant1.gif")
+        drawObject(-380, 140, "img/plant1.gif")
+        drawObject(-310, 140, "img/plant1.gif")
+        drawObject(-230, 140, "img/Npc4.gif")
+        drawObject(-150, 180, "img/plant1.gif")
+        drawObject(200, 140, "img/plant2.gif")
+        drawObject(-440, -90, "img/tablechair2.gif")
+        drawObject(-310, -90, "img/tablechair2.gif")
+        drawObject(-200, -200, "img/plant2.gif")
+        drawObject(-200, -120, "img/plant2.gif")
+        drawObject(-120, -210, "img/Npc1.gif")
+        drawObject(-50, -210, "img/Npc1.gif")
+        drawObject(30, -200, "img/plant2.gif")
+        drawObject(30, -120, "img/plant2.gif")
+        drawObject(80, -200, "img/plant2.gif")
+        drawObject(80, -120, "img/plant2.gif")
+        drawObject(130, -200, "img/plant2.gif")
+        drawObject(130, -120, "img/plant2.gif")
         computer.image.draw(win)
 
 
@@ -1071,22 +1087,22 @@ def drawScene():
         elevator.image.draw(win)
         gateR.image.draw(win)
         computer.image.draw(win)
-        drawObject(-450, 140, "Npc2.gif")
-        drawObject(-380, 140, "Npc2.gif") 
-        drawObject(-310, 140, "Npc2.gif")
-        drawObject(-240, 140, "Npc4.gif")
-        drawObject(-150, 180, "plant2.gif")
-        drawObject(200, 140, "plant2.gif")
-        drawObject(-440, -150, "bookcase.gif")
-        drawObject(-310, -150, "bookcase.gif")
-        drawObject(-200, -200, "Npc1.gif")      
-        drawObject(-120, -210, "plant2.gif")
-        drawObject(-50, -210, "plant2.gif")
-        drawObject(-120, -130, "plant2.gif")
-        drawObject(-50, -130, "plant2.gif")  
-        drawObject(30, -200, "chair.gif")
-        drawObject(80, -200, "chair.gif")
-        drawObject(130, -200, "chair.gif")
+        drawObject(-450, 140, "img/Npc2.gif")
+        drawObject(-380, 140, "img/Npc2.gif") 
+        drawObject(-310, 140, "img/Npc2.gif")
+        drawObject(-240, 140, "img/Npc4.gif")
+        drawObject(-150, 180, "img/plant2.gif")
+        drawObject(200, 140, "img/plant2.gif")
+        drawObject(-440, -150, "img/bookcase.gif")
+        drawObject(-310, -150, "img/bookcase.gif")
+        drawObject(-200, -200, "img/Npc1.gif")      
+        drawObject(-120, -210, "img/plant2.gif")
+        drawObject(-50, -210, "img/plant2.gif")
+        drawObject(-120, -130, "img/plant2.gif")
+        drawObject(-50, -130, "img/plant2.gif")  
+        drawObject(30, -200, "img/chair.gif")
+        drawObject(80, -200, "img/chair.gif")
+        drawObject(130, -200, "img/chair.gif")
         ileanaDoor.image.draw(win)
         judithDoor.image.draw(win)
 
@@ -1097,19 +1113,24 @@ def drawOffice(image, name, door):
     '''Draw the office of a given character
     '''
     resetScene()
+
     door.positionX = 200
-    drawObject(200, 190, "door.gif")
+    drawObject(200, 190, "img/door.gif")
+
     mainCharacter.positionX= 150
     mainCharacter.image.draw(win)
-    print("draw in drawOffice")
+
     global professor
     professor = Professor(name, -150, 160, image)
     professor.image.draw(win)
-    drawObject(0, 190, "tablechair.gif")
+
+    drawObject(0, 190, "img/tablechair.gif")
+
     return professor
 
 # Quick draw objects
 def drawObject(px, py, imageID):
+
     positionX = px
     positionY = py
     image = Image( Point(px, py), imageID )
@@ -1117,6 +1138,7 @@ def drawObject(px, py, imageID):
 
 # Cover the current scene and undraw objects
 def resetScene():
+
     mainCharacter.image.undraw()
     computer.image.undraw() 
     unknownDoor1.image.undraw()
@@ -1172,17 +1194,17 @@ def oneClickObjects():
     #================================= Gates, elevator, staircases ======================
     global gateL
     global gateR 
-    gateL = Objects(-550, 0, "gate.gif", "gateL")
-    gateR = Objects(550, 0, "gate.gif", "gateR")
+    gateL = Objects(-550, 0, "img/gate.gif", "gateL")
+    gateR = Objects(550, 0, "img/gate.gif", "gateR")
     gateR.image.draw(win)
     #elevator
     global elevator
-    elevator = Objects(280, -190, "elevator1.gif", "elevator")
+    elevator = Objects(280, -190, "img/elevator1.gif", "elevator")
     #staircase
     global staircaseUp
     global staircaseDown
-    staircaseUp = Objects(-440, 150, "staircase.gif", "staircase")
-    staircaseDown = Objects(-440, -140, "staircase.gif", "staircase")
+    staircaseUp = Objects(-440, 150, "img/staircase.gif", "staircase")
+    staircaseDown = Objects(-440, -140, "img/staircase.gif", "staircase")
     
     #================================== Doors ===============================
     global joeDoor
@@ -1196,17 +1218,18 @@ def oneClickObjects():
     global unknownDoor3
     global unknownDoor4
     global unknownDoor5
-    joeDoor = Door(200, 190, "door.gif", "joeDoor")
-    jordanDoor = Door(400, 190, "door.gif", "jordanDoor")
-    dominiqueDoor = Door(-200, 190, "door.gif", "dominiqueDoor")
-    nickDoor = Door(0, 190, "door.gif", "nickDoor")
-    ileanaDoor = Door(100, 190, "door.gif", "ileanaDoor")
-    judithDoor = Door(400, 190, "door.gif", "judithDoor")
-    unknownDoor1 = Door(-300, 190, "door.gif", "unknownDoor")
-    unknownDoor2 = Door(-100, 190, "door.gif", "unknwonDoor")
-    unknownDoor3 = Door(100, 190, "door.gif", "unknownDoor")
-    unknownDoor4 = Door(300, 190, "door.gif", "unknownDoor")
-    unknownDoor5 = Door(500, 190, "door.gif", "unknownDoor")
+
+    joeDoor = Door(200, 190, "img/door.gif", "joeDoor")
+    jordanDoor = Door(400, 190, "img/door.gif", "jordanDoor")
+    dominiqueDoor = Door(-200, 190, "img/door.gif", "dominiqueDoor")
+    nickDoor = Door(0, 190, "img/door.gif", "nickDoor")
+    ileanaDoor = Door(100, 190, "img/door.gif", "ileanaDoor")
+    judithDoor = Door(400, 190, "img/door.gif", "judithDoor")
+    unknownDoor1 = Door(-300, 190, "img/door.gif", "unknownDoor")
+    unknownDoor2 = Door(-100, 190, "img/door.gif", "unknwonDoor")
+    unknownDoor3 = Door(100, 190, "img/door.gif", "unknownDoor")
+    unknownDoor4 = Door(300, 190, "img/door.gif", "unknownDoor")
+    unknownDoor5 = Door(500, 190, "img/door.gif", "unknownDoor")
 
     #============================== NPCs =================================
     global Npc4_1r
@@ -1226,28 +1249,31 @@ def oneClickObjects():
     global Npc2b_1l
     global Npc1_1l
     global Npc2b_1l
-    Npc2_1l = Npc(-450, 140, "Npc2.gif")
-    Npc3_1l = Npc(-380, 140, "Npc3.gif")
-    Npc2b_1l = Npc(-310, 140, "Npc2.gif")
-    Npc1_1l = Npc(-120, -150, "Npc1.gif")
-    Npc2b_1l = Npc(-50, -150, "Npc1.gif")    
-    Npc4_2l = Npc(-230, 140, "Npc4.gif")
-    Npc2_3l = Npc(-450, 140, "Npc2.gif")
-    Npc2b_3l = Npc(-380, 140, "Npc2.gif")
-    Npc2c_3l = Npc(-310, 140, "Npc2.gif")
-    Npc4_3l = Npc(-240, 140, "Npc4.gif")
-    Npc4_1r = Npc(-250, 140, "Npc4.gif")
-    Npc1a_1r = Npc(-120, -200, "Npc1.gif")
-    Npc1b_1r = Npc(-50, -200, "Npc1.gif")
-    Npc2_2r = Npc(-240, -140, "Npc2.gif")
-    Npc3_2r = Npc(-180, -140, "Npc3.gif")
-    Npc2b_2r = Npc(-120, -140, "Npc2.gif")
-    Npc3b_2r = Npc(-60, -140, "Npc3.gif")
+
+    Npc2_1l = Npc(-450, 140, "img/Npc2.gif")
+    Npc3_1l = Npc(-380, 140, "img/Npc3.gif")
+    Npc2b_1l = Npc(-310, 140, "img/Npc2.gif")
+    Npc1_1l = Npc(-120, -150, "img/Npc1.gif")
+    Npc2b_1l = Npc(-50, -150, "img/Npc1.gif")    
+    Npc4_2l = Npc(-230, 140, "img/Npc4.gif")
+    Npc2_3l = Npc(-450, 140, "img/Npc2.gif")
+    Npc2b_3l = Npc(-380, 140, "img/Npc2.gif")
+    Npc2c_3l = Npc(-310, 140, "img/Npc2.gif")
+    Npc4_3l = Npc(-240, 140, "img/Npc4.gif")
+    Npc4_1r = Npc(-250, 140, "img/Npc4.gif")
+    Npc1a_1r = Npc(-120, -200, "img/Npc1.gif")
+    Npc1b_1r = Npc(-50, -200, "img/Npc1.gif")
+    Npc2_2r = Npc(-240, -140, "img/Npc2.gif")
+    Npc3_2r = Npc(-180, -140, "img/Npc3.gif")
+    Npc2b_2r = Npc(-120, -140, "img/Npc2.gif")
+    Npc3b_2r = Npc(-60, -140, "img/Npc3.gif")
+
     global npc1r
     global npc2r
     global npc3l
     global npc1l
     global npc2l
+
     npc1r = [Npc4_1r, Npc1a_1r, Npc1b_1r]
     npc2r = [Npc2_2r, Npc3_2r, Npc2b_2r, Npc3b_2r]
     npc3l = [Npc2_3l, Npc2b_3l, Npc2c_3l, Npc4_3l]
@@ -1297,22 +1323,27 @@ def setDirectionKeys():
         tkinter.messagebox.showinfo( "Control System Selection.", 'Successfully set to arrow key control system')
         tkinter.messagebox.showinfo( "Control System Selection.", 'Good luck on your CS journey!')
 
+    #=======================================================
+    #=======================================================
     tkinter.messagebox.showinfo( "Control System Selection.", "Now select your control keys.")
+   
     top = tkinter.Tk()
     b1 = tkinter.Button(top, text = "WSAD", command = wsad)
-    b1.pack()
     b2 = tkinter.Button(top, text = "UpDownLeftRight", command= udlr)
-    b2.pack()
     b3 = tkinter.Button(top, text="Done", command = top.destroy)
+    b1.pack()
+    b2.pack()
     b3.pack()
 
 # Some messages for the players
 def welcome():
+
     tkinter.messagebox.showinfo( "Welcome!", 'Welcome! Dude!')
     tkinter.messagebox.showinfo( "Welcome!", 'If you want to interact with professor, use the return key.')
     tkinter.messagebox.showinfo( "Welcome!", 'When selection appear, click on "Done" to make up your mind:)')
     tkinter.messagebox.showinfo( "Welcome!", 'You can check your information on computers, or at any time pressing i.')
     tkinter.messagebox.showinfo( "Welcome!", 'If you are feeling terrible, feel free to use the period key!')
+    
     setDirectionKeys()
 
 # Create the window.
