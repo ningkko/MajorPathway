@@ -1,0 +1,2 @@
+1. Graduation logic
+2. Fix character drifting when changing scenes
