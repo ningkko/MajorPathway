@@ -1,6 +1,7 @@
 # MajorPathway
 Educational game; \
 CSC 220 Final Project - Spring 2018 @Smith
+You can find our presentation slides here: https://docs.google.com/presentation/d/1wqSukMUX7KGeYS7BEAbBZY0DvlwbMZNgjDMPKnM5reg/edit?usp=sharing
 
 ## Introduction
 We want to build an RPG game to help students at Smith better understand the paths towards CS major and minor. \
